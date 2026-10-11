@@ -1,0 +1,38 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Run a Private AI Assistant on Your Own PC (No Subscription)</title><meta name='description' content='How to get a local AI model, your own documents, and a daily brief on your phone for $0 a month.'><style>
+:root{--ink:#1d1d1f;--mute:#5f6368;--line:#e3e3e3;--bg:#fff;--card:#f6f8f7;--accent:#2f6f4f}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e8e8;--mute:#a0a0a0;--line:#333;--bg:#121212;--card:#1c1f1d;--accent:#7cc79f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main,header,footer{max-width:720px;margin:0 auto;padding:0 16px}header{padding-top:28px}
+header a{color:var(--ink);text-decoration:none;font-weight:700}header p{color:var(--mute);margin:2px 0 0}
+h1{font-size:2rem;line-height:1.2;margin:28px 0 8px}h2{font-size:1.3rem;margin:28px 0 6px}
+a{color:var(--accent)}.desc{color:var(--mute);font-size:1.05rem}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+.card h2{margin:0 0 4px;font-size:1.15rem}.card a{text-decoration:none}.cta{background:var(--card);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:28px 0}
+blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--line);color:var(--mute)}code{background:var(--card);padding:1px 4px;border-radius:4px}
+footer{color:var(--mute);font-size:.9rem;padding:32px 16px 40px;border-top:1px solid var(--line);margin-top:40px}
+</style></head><body><header><a href='./'>Quiet Income Lab</a><p>Practical how-tos for small cleaning businesses and do-it-yourself AI.</p></header><main><h1>Run a Private AI Assistant on Your Own PC (No Subscription)</h1><p class='desc'>How to get a local AI model, your own documents, and a daily brief on your phone for $0 a month.</p><p>You don't need a monthly AI subscription to get a useful assistant. A regular Windows PC with 16 GB of RAM can run a capable AI model locally, answer questions about your own documents, and push a short brief to your phone every morning. Nothing leaves your house unless you choose.</p>
+<p>This is the setup I run at home. Here's the overview.</p>
+<h2>The four free pieces</h2>
+<ul>
+<li><strong>Ollama</strong> runs the AI model on your PC. A 4-billion-parameter model like qwen3:4b is a good all-rounder and works without a graphics card.</li>
+<li><strong>AnythingLLM</strong> gives you a chat window over your own files. Make one "workspace" per area of life (family, work, side business) so answers stay on topic.</li>
+<li><strong>ntfy</strong> sends free push notifications to your phone. No account needed. Your private topic name works like a password.</li>
+<li><strong>A small script</strong> gathers facts (weather, your to-do list), asks the local model to summarize them, and pushes the result to your phone. Windows Task Scheduler runs it every morning.</li>
+</ul>
+<h2>What it's good at (and what it isn't)</h2>
+<p>Small local models are great at <strong>summarizing facts you hand them</strong>: "here's the weather and my list, what matters today?" They're bad at knowing things on their own, and they will confidently make things up if you let them.</p>
+<p>Three habits fix most of that:</p>
+<ol>
+<li>Give the model the facts in the prompt and say "use only the facts above".</li>
+<li>Tell it what to do when information is missing: "if the list is empty, say so, never invent tasks."</li>
+<li>Use AnythingLLM's <strong>Query</strong> mode for document questions, so answers come only from your files.</li>
+</ol>
+<h2>What it costs to run</h2>
+<p>The software is free. The only cost is electricity while the PC is on. On a PC without a graphics card, a short morning brief takes about 20 to 60 seconds to generate, which is fine for something that runs once a day.</p>
+<h2>Privacy checklist</h2>
+<ul>
+<li>Keep everything local: Ollama and AnythingLLM Desktop don't need the cloud.</li>
+<li>Use a long random ntfy topic and never post it.</li>
+<li>Don't put passwords, card numbers or ID scans into any AI workspace.</li>
+<li>To reach it from your phone away from home, use Tailscale (free) instead of opening ports on your router.</li>
+</ul>
+<div class="cta">The full step-by-step guide, including the ready-to-run morning brief script, is here: <a href="https://jbman03gmail.gumroad.com/l/ziccnx">Your Own Private AI Assistant, Weekend Setup Guide</a>. Prefer to have it done for you? <a href="https://jbman03gmail.gumroad.com/l/jxapmn">Book a 90-minute setup session</a>.</div></main><footer>Products and setup help: <a href='https://jbman03gmail.gumroad.com'>jbman03gmail.gumroad.com</a></footer></body></html>
