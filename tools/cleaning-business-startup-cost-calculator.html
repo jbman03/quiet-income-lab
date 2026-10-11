@@ -1,0 +1,65 @@
+<!-- title: Cleaning Business Startup Cost Calculator -->
+<!-- desc: Add up what it really costs to start a house cleaning business, see your monthly costs, and how many cleanings it takes to break even. -->
+<style>
+.sc table{width:100%;border-collapse:collapse}.sc td{padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:middle}
+.sc td:last-child{width:120px}.sc input{font:inherit;width:110px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);text-align:right}
+.sc h2{margin-top:22px}.hint{color:var(--mute);font-size:.9rem}
+.out{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:18px 0}
+.big{font-size:1.6rem;font-weight:700;color:var(--accent)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+<p>Every cost below is a typical starting placeholder, not a quote. Prices vary a lot by state and city, so <strong>replace each number with what you find locally</strong>. Put 0 for anything you already own or will skip.</p>
+<div class="sc">
+<h2>One-time startup costs</h2>
+<table id="once">
+<tr><td>Business registration / LLC filing <div class="hint">Varies by state, often about $50-$300</div></td><td><input data-v="150"></td></tr>
+<tr><td>Vacuum (commercial-grade if possible)</td><td><input data-v="250"></td></tr>
+<tr><td>Starter supplies: cleaners, microfiber, mop, caddy, gloves</td><td><input data-v="200"></td></tr>
+<tr><td>Simple website / domain <div class="hint">$0 if you start with a free Facebook page</div></td><td><input data-v="0"></td></tr>
+<tr><td>Business cards / door hangers</td><td><input data-v="40"></td></tr>
+<tr><td>Uniform shirts</td><td><input data-v="60"></td></tr>
+<tr><td>Other</td><td><input data-v="0"></td></tr>
+</table>
+<h2>Monthly costs</h2>
+<table id="monthly">
+<tr><td>General liability insurance <div class="hint">Get a real quote; often quoted monthly</div></td><td><input data-v="50"></td></tr>
+<tr><td>Bonding (optional, some clients ask for it)</td><td><input data-v="10"></td></tr>
+<tr><td>Phone (business share)</td><td><input data-v="30"></td></tr>
+<tr><td>Scheduling / invoicing software <div class="hint">Free tiers exist when you're small</div></td><td><input data-v="0"></td></tr>
+<tr><td>Marketing</td><td><input data-v="0"></td></tr>
+</table>
+<h2>Your jobs</h2>
+<table>
+<tr><td>Average price per cleaning ($)</td><td><input id="price" data-v="150"></td></tr>
+<tr><td>Supplies + fuel per cleaning ($) <div class="hint">Refills and driving; these grow with every job, so they're not in the monthly list</div></td><td><input id="varc" data-v="15"></td></tr>
+</table>
+</div>
+
+<div class="out grid">
+  <div><div>Startup cost</div><div class="big" id="o1">$0</div></div>
+  <div><div>Monthly fixed costs</div><div class="big" id="o2">$0</div></div>
+  <div><div>Cleanings to cover monthly costs</div><div class="big" id="o3">0</div></div>
+</div>
+<p id="o4"></p>
+
+<div class="cta">Ready to land those first clients? The <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> has the intake form, quote worksheet and client messages. Then price each job with the free <a href="cleaning-quote-calculator.html">quote calculator</a>.</div>
+
+<script>
+document.querySelectorAll(".sc input").forEach(i => { i.value = i.dataset.v; i.type = "number"; i.min = "0"; i.addEventListener("input", calc); });
+const sum = id => [...document.querySelectorAll(`#${id} input`)].reduce((s, i) => s + (parseFloat(i.value) || 0), 0);
+const money = v => "$" + Math.round(v).toLocaleString();
+function calc() {
+  const once = sum("once"), monthly = sum("monthly");
+  const price = parseFloat(document.getElementById("price").value) || 0, varc = parseFloat(document.getElementById("varc").value) || 0;
+  const margin = price - varc;
+  const be = margin > 0 ? Math.ceil(monthly / margin) : 0;
+  const payback = margin > 0 ? Math.ceil(once / margin) : 0;
+  document.getElementById("o1").textContent = money(once);
+  document.getElementById("o2").textContent = money(monthly);
+  document.getElementById("o3").textContent = margin > 0 ? be + " / month" : "-";
+  document.getElementById("o4").textContent = margin > 0
+    ? `Each cleaning leaves about ${money(margin)} after supplies and fuel. About ${be} cleanings a month cover your fixed costs, and about ${payback} more cover what you spent to start. Everything after that is your pay. This doesn't include taxes or paying helpers.`
+    : "Set a price per cleaning above your per-cleaning costs to see your break-even.";
+}
+calc();
+</script>
