@@ -1,0 +1,99 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Commercial Cleaning Bid Calculator</title><meta name='description' content='Turn square footage, visits per week and your labor cost into a monthly office cleaning bid with a real profit margin.'><style>
+:root{--ink:#1d1d1f;--mute:#5f6368;--line:#e3e3e3;--bg:#fff;--card:#f6f8f7;--accent:#2f6f4f}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e8e8;--mute:#a0a0a0;--line:#333;--bg:#121212;--card:#1c1f1d;--accent:#7cc79f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main,header,footer{max-width:720px;margin:0 auto;padding:0 16px}header{padding-top:28px}
+header a{color:var(--ink);text-decoration:none;font-weight:700}header p{color:var(--mute);margin:2px 0 0}
+h1{font-size:2rem;line-height:1.2;margin:28px 0 8px}h2{font-size:1.3rem;margin:28px 0 6px}
+a{color:var(--accent)}.desc{color:var(--mute);font-size:1.05rem}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+.card h2{margin:0 0 4px;font-size:1.15rem}.card a{text-decoration:none}.cta{background:var(--card);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:28px 0}
+blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--line);color:var(--mute)}code{background:var(--card);padding:1px 4px;border-radius:4px}
+footer{color:var(--mute);font-size:.9rem;padding:32px 16px 40px;border-top:1px solid var(--line);margin-top:40px}
+</style></head><body><header><a href='./'>Quiet Income Lab</a><p>Practical how-tos for small cleaning businesses and do-it-yourself AI.</p></header><main><h1>Commercial Cleaning Bid Calculator</h1><p class='desc'>Turn square footage, visits per week and your labor cost into a monthly office cleaning bid with a real profit margin.</p><!-- title: Commercial Cleaning Bid Calculator -->
+<!-- desc: Turn square footage, visits per week and your labor cost into a monthly office cleaning bid with a real profit margin. -->
+<style>
+.bc label{display:block;margin:10px 0 4px;font-weight:600}.bc input,.bc select{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hint{color:var(--mute);font-size:.9rem;font-weight:400}
+.out{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:18px 0}
+.big{font-size:1.8rem;font-weight:700;color:var(--accent)}.out table{width:100%;border-collapse:collapse}.out td{padding:4px 0;border-bottom:1px solid var(--line)}.out td:last-child{text-align:right}
+textarea{width:100%;min-height:120px;font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.btn{font:inherit;padding:8px 14px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;margin-top:6px}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+</style>
+<div class="bc">
+<div class="row">
+  <div><label for="sqft">Cleanable square feet</label><input id="sqft" type="number" min="0" value="5000"></div>
+  <div><label for="vis">Visits per week</label><input id="vis" type="number" min="1" max="7" value="3"></div>
+</div>
+<div class="row">
+  <div><label for="type">Type of space</label><select id="type">
+    <option value="3000">Open office, light use</option><option value="2500" selected>Typical office</option>
+    <option value="1800">Medical / dental office</option><option value="2000">Retail / showroom</option>
+    <option value="1500">Daycare / gym (heavy use)</option></select></div>
+  <div><label for="rate">Production rate (sq ft per hour) <span class="hint">auto-set by type; adjust to your crew</span></label><input id="rate" type="number" min="100" value="2500"></div>
+</div>
+<div class="row">
+  <div><label for="rr">Restrooms</label><input id="rr" type="number" min="0" value="2"></div>
+  <div><label for="rrm">Minutes per restroom per visit</label><input id="rrm" type="number" min="0" value="15"></div>
+</div>
+<div class="row">
+  <div><label for="wage">Hourly wage you pay ($) <span class="hint">or what your own hour is worth</span></label><input id="wage" type="number" min="0" value="18"></div>
+  <div><label for="burden">Payroll taxes + insurance on top of wage (%)</label><input id="burden" type="number" min="0" value="20"></div>
+</div>
+<div class="row">
+  <div><label for="sup">Supplies + consumables (% of labor)</label><input id="sup" type="number" min="0" value="8"></div>
+  <div><label for="margin">Target profit margin (%)</label><input id="margin" type="number" min="0" max="90" value="25"></div>
+</div>
+</div>
+
+<div class="out">
+  <div>Monthly bid</div><div class="big" id="bid">$0</div>
+  <table>
+    <tr><td>Time per visit</td><td id="tv"></td></tr>
+    <tr><td>Labor hours per month</td><td id="hm"></td></tr>
+    <tr><td>Your monthly cost (labor + burden + supplies)</td><td id="cost"></td></tr>
+    <tr><td>Profit per month at this bid</td><td id="profit"></td></tr>
+    <tr><td>Price per visit</td><td id="pv"></td></tr>
+    <tr><td>Price per sq ft per month</td><td id="psf"></td></tr>
+  </table>
+</div>
+
+<label for="msg"><strong>Copy-ready bid summary</strong></label>
+<textarea id="msg"></textarea>
+<button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('msg').value).then(()=>this.textContent='Copied')">Copy summary</button>
+
+<p class="hint" style="margin-top:18px">Production rates vary a lot with layout, clutter, floor types and your crew's experience. Time your crew on a walkthrough or first visits and adjust the rate. Months are averaged at 4.33 weeks.</p>
+
+<div class="cta">Read the guide: <a href="how-to-win-your-first-commercial-cleaning-contract.html">how to win your first commercial cleaning contract</a>. Pricing homes too? Use the free <a href="cleaning-quote-calculator.html">house cleaning quote calculator</a>.</div>
+
+<script>
+const $ = id => document.getElementById(id), n = id => parseFloat($(id).value) || 0;
+const money = v => "$" + Math.round(v).toLocaleString();
+$("type").addEventListener("change", () => { $("rate").value = $("type").value; calc(); });
+function calc() {
+  const hrsVisit = n("sqft") / Math.max(100, n("rate")) + n("rr") * n("rrm") / 60;
+  const hrsMonth = hrsVisit * n("vis") * 4.33;
+  const labor = hrsMonth * n("wage") * (1 + n("burden") / 100);
+  const cost = labor * (1 + n("sup") / 100);
+  const m = Math.min(90, n("margin")) / 100;
+  const bid = Math.ceil(cost / (1 - m) / 5) * 5;
+  const visits = n("vis") * 4.33;
+  $("bid").textContent = money(bid) + " / month";
+  $("tv").textContent = `${Math.floor(hrsVisit)} h ${Math.round((hrsVisit % 1) * 60)} min (1 cleaner)`;
+  $("hm").textContent = hrsMonth.toFixed(1) + " h";
+  $("cost").textContent = money(cost);
+  $("profit").textContent = money(bid - cost);
+  $("pv").textContent = money(bid / visits);
+  $("psf").textContent = n("sqft") ? "$" + (bid / n("sqft")).toFixed(3) : "-";
+  const t = $("type");
+  $("msg").value = `Cleaning proposal summary\n` +
+    `Space: ${n("sqft").toLocaleString()} sq ft ${t.options[t.selectedIndex].text.toLowerCase()}, ${n("rr")} restroom${n("rr") == 1 ? "" : "s"}\n` +
+    `Service: ${n("vis")} visit${n("vis") == 1 ? "" : "s"} per week, all supplies included\n` +
+    `Monthly price: ${money(bid)} (about ${money(bid / visits)} per visit)\n` +
+    `Includes: trash and recycling, restrooms cleaned and restocked, kitchen/break area, dusting of reachable surfaces, vacuuming and mopping of all floors.\n` +
+    `Happy to walk through the space and adjust the scope to fit your needs.`;
+}
+document.querySelectorAll(".bc input").forEach(el => el.addEventListener("input", calc));
+calc();
+</script>
+</main><footer>Products and setup help: <a href='https://jbman03gmail.gumroad.com'>jbman03gmail.gumroad.com</a></footer></body></html>
