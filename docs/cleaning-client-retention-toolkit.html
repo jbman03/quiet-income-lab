@@ -1,0 +1,112 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Client-Keeping Toolkit: Price Increase Letter + Touchpoint Calendar</title><meta name='description' content='Write a kind, clear price increase notice in seconds, and get a dated plan for when to message each recurring client so they stay.'><style>
+:root{--ink:#1d1d1f;--mute:#5f6368;--line:#e3e3e3;--bg:#fff;--card:#f6f8f7;--accent:#2f6f4f}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e8e8;--mute:#a0a0a0;--line:#333;--bg:#121212;--card:#1c1f1d;--accent:#7cc79f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main,header,footer{max-width:720px;margin:0 auto;padding:0 16px}header{padding-top:28px}
+header a{color:var(--ink);text-decoration:none;font-weight:700}header p{color:var(--mute);margin:2px 0 0}
+h1{font-size:2rem;line-height:1.2;margin:28px 0 8px}h2{font-size:1.3rem;margin:28px 0 6px}
+a{color:var(--accent)}.desc{color:var(--mute);font-size:1.05rem}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+.card h2{margin:0 0 4px;font-size:1.15rem}.card a{text-decoration:none}.cta{background:var(--card);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:28px 0}
+blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--line);color:var(--mute)}code{background:var(--card);padding:1px 4px;border-radius:4px}
+footer{color:var(--mute);font-size:.9rem;padding:32px 16px 40px;border-top:1px solid var(--line);margin-top:40px}
+</style></head><body><header><a href='./'>Quiet Income Lab</a><p>Practical how-tos for small cleaning businesses and do-it-yourself AI.</p></header><main><h1>Client-Keeping Toolkit: Price Increase Letter + Touchpoint Calendar</h1><p class='desc'>Write a kind, clear price increase notice in seconds, and get a dated plan for when to message each recurring client so they stay.</p><!-- title: Client-Keeping Toolkit: Price Increase Letter + Touchpoint Calendar -->
+<!-- desc: Write a kind, clear price increase notice in seconds, and get a dated plan for when to message each recurring client so they stay. -->
+<style>
+.kt label{display:block;margin:10px 0 4px;font-weight:600}.kt input,.kt select{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}textarea{width:100%;min-height:190px;font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.btn{font:inherit;padding:8px 14px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;margin:6px 6px 0 0}
+.out{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}.out table{width:100%;border-collapse:collapse}
+.out td{padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}.out td:first-child{white-space:nowrap;font-weight:600;padding-right:12px}
+.hint{color:var(--mute);font-size:.9rem}@media (max-width:520px){.row{grid-template-columns:1fr}}
+</style>
+<div class="kt">
+<div class="row">
+  <div><label for="biz">Your business name</label><input id="biz" placeholder="Sparkle Home Cleaning"></div>
+  <div><label for="me">Your name</label><input id="me" placeholder="Sam"></div>
+</div>
+
+<h2>1. Price increase notice</h2>
+<div class="row">
+  <div><label for="cl">Client's first name</label><input id="cl" placeholder="Maria"></div>
+  <div><label for="since">Client since (year)</label><input id="since" type="number" placeholder="2024"></div>
+</div>
+<div class="row">
+  <div><label for="old">Current price per clean ($)</label><input id="old" type="number" value="140"></div>
+  <div><label for="new">New price per clean ($)</label><input id="new" type="number" value="150"></div>
+</div>
+<div class="row">
+  <div><label for="eff">Effective date</label><input id="eff" type="date"></div>
+  <div><label for="why">Main reason</label><select id="why">
+    <option value="rising supply, fuel and insurance costs">Rising supply, fuel and insurance costs</option>
+    <option value="paying our team fairly so the same trusted cleaners can keep coming">Paying the team fairly</option>
+    <option value="the time your home now takes to clean to our standard">Home takes longer now</option>
+    <option value="our yearly price review">Yearly price review</option></select></div>
+</div>
+<div class="hint" id="pct"></div>
+</div>
+<label for="letter"><strong>Message to send</strong> <span class="hint">(text or email; at least 30 days' notice is a kind default)</span></label>
+<textarea id="letter"></textarea>
+<button class="btn" onclick="cp('letter',this)">Copy message</button>
+
+<h2>2. Touchpoint calendar for a recurring client</h2>
+<div class="kt">
+<div class="row">
+  <div><label for="start">First clean date</label><input id="start" type="date"></div>
+  <div><label for="freq">How often</label><select id="freq"><option value="7">Weekly</option><option value="14" selected>Every 2 weeks</option><option value="28">Every 4 weeks</option></select></div>
+</div>
+</div>
+<div class="out"><table id="cal"></table></div>
+<button class="btn" onclick="cp('caltext',this)">Copy plan as text</button>
+<textarea id="caltext" style="display:none"></textarea>
+<p class="hint">The exact words for each touchpoint are in the free <a href="cleaning-client-message-templates.html">client message templates</a>.</p>
+
+<div class="cta">The <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> adds a feedback and rebooking form and a scope checklist so every clean is consistent, which is the main thing that keeps clients. Read the guide: <a href="how-to-keep-cleaning-clients.html">how to keep your cleaning clients</a>.</div>
+
+<script>
+const $ = id => document.getElementById(id), v = (id, d) => $(id).value.trim() || d;
+const fmt = d => d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+function cp(id, b) { navigator.clipboard.writeText($(id).value).then(() => { const t = b.textContent; b.textContent = "Copied"; setTimeout(() => b.textContent = t, 1500); }); }
+function letter() {
+  const o = parseFloat($("old").value) || 0, n = parseFloat($("new").value) || 0;
+  const eff = $("eff").value ? fmt(new Date($("eff").value + "T12:00")) : "[date]";
+  $("pct").textContent = o ? `That's a ${((n / o - 1) * 100).toFixed(1)}% increase ($${(n - o).toFixed(0)} per clean).` : "";
+  const since = v("since", "") ? ` since ${v("since", "")}` : "";
+  $("letter").value =
+`Hi ${v("cl", "[Client]")},
+
+Thank you for trusting ${v("biz", "[Business]")} with your home${since}. It means a lot to us.
+
+I'm writing to let you know that starting ${eff}, the price for your cleaning will change from $${o} to $${n}. This change reflects ${$("why").value}.
+
+Nothing else changes: same schedule, same checklist, and the same care for your home. If you have any questions, or would like to talk about adjusting your schedule, just reply here.
+
+Thank you for being part of our small business.
+
+${v("me", "[Your name]")}
+${v("biz", "[Business]")}`;
+}
+function cal() {
+  const s = $("start").value ? new Date($("start").value + "T12:00") : new Date();
+  const f = parseInt($("freq").value);
+  const rows = [
+    [addDays(s, -1), "Reminder the day before the first clean"],
+    [s, "\"All done\" message right after the clean"],
+    [addDays(s, 1), "Ask for a review (while they're happiest)"],
+    [addDays(s, f - 1), "Reminder before the second clean"],
+    [addDays(s, f * 2), "Quick check-in: \"Anything you'd like us to focus on?\""],
+    [addDays(s, 90), "3-month thank-you; ask for a referral"],
+    [addDays(s, 180), "6-month check-in: offer a deep clean add-on"],
+    [addDays(s, 335), "Yearly price review: send a price notice now if needed (30 days before the anniversary)"],
+    [addDays(s, 365), "1-year anniversary thank-you"]
+  ];
+  $("cal").innerHTML = rows.map(r => `<tr><td>${fmt(r[0])}</td><td>${r[1]}</td></tr>`).join("") +
+    `<tr><td>Every visit</td><td>Reminder the day before + "on my way" text</td></tr>`;
+  $("caltext").value = rows.map(r => `${fmt(r[0])}: ${r[1]}`).join("\n") + "\nEvery visit: reminder the day before + \"on my way\" text";
+}
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const t = new Date(); $("eff").value = ymd(addDays(t, 30)); $("start").value = ymd(t);
+document.querySelectorAll(".kt input,.kt select").forEach(el => el.addEventListener("input", () => { letter(); cal(); }));
+letter(); cal();
+</script>
+</main><footer>Products and setup help: <a href='https://jbman03gmail.gumroad.com'>jbman03gmail.gumroad.com</a></footer></body></html>
