@@ -1,0 +1,71 @@
+<!-- title: 24 Client Message Templates for Cleaning Businesses -->
+<!-- desc: Copy-ready texts for inquiries, booking, reminders, running late, rebooking, reviews, complaints and price increases, with your names filled in. -->
+<style>
+.top{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.top input,#q{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.top label{font-weight:600;display:block;margin-bottom:4px}.chips{margin:10px 0}.chip{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 12px;margin:3px;cursor:pointer}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}.msg{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.msg h3{margin:0 0 6px;font-size:1rem}.msg p{margin:0 0 8px;white-space:pre-wrap}.cp{font:inherit;padding:6px 12px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}
+.tag{color:var(--mute);font-size:.85rem;margin-left:6px}@media (max-width:520px){.top{grid-template-columns:1fr}}
+</style>
+<div class="top">
+  <div><label for="biz">Your business name</label><input id="biz" placeholder="Sparkle Home Cleaning"></div>
+  <div><label for="me">Your first name</label><input id="me" placeholder="Sam"></div>
+</div>
+<input id="q" placeholder="Search messages (e.g. late, review, price)">
+<div class="chips" id="chips"></div>
+<div id="list"></div>
+<p class="desc">Replace anything in [brackets] before sending. Nothing you type here is saved or sent anywhere.</p>
+<div class="cta">Want the full client workflow (intake form, walkthrough worksheet, quote template, scope checklist and feedback form)? Get the <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a>. Pricing a job right now? Try the free <a href="cleaning-quote-calculator.html">quote calculator</a>.</div>
+<script>
+const M = [
+ ["Inquiry", "First reply to \"How much do you charge?\"", "Hi [Client]! Thanks for reaching out to {BIZ}. Prices depend on the size of the home and what you'd like included. Could you share the number of bedrooms and bathrooms, how often you'd like cleaning, and anything extra (oven, fridge, windows)? I'll send you a clear quote today. - {ME}"],
+ ["Inquiry", "Sending the quote", "Thanks for the details, [Client]! For a [standard/deep] clean of your [X]-bedroom, [X]-bathroom home, the price is $[amount], all supplies included. It usually takes about [X] hours. Would you like me to get you on the schedule? - {ME}, {BIZ}"],
+ ["Inquiry", "Following up on a quote (once)", "Hi [Client], just checking you got the quote I sent. Happy to adjust anything or answer questions. - {ME}"],
+ ["Inquiry", "When you're fully booked", "Thanks so much for thinking of {BIZ}, [Client]! We're fully booked for the next [X] weeks. I can add you to our waitlist and message you as soon as a spot opens. Would that work?"],
+ ["Booking", "Booking confirmation", "You're booked! {BIZ} will see you on [day, date] at [time]. Total: $[amount]. Please let us know about pets, parking, or how we'll get in. Thank you, [Client]!"],
+ ["Booking", "What to do before we arrive", "Hi [Client], a few tips so we can focus on cleaning for your visit on [day]: pick up clothes and toys from the floors, leave counters as clear as you can, and let us know about any areas to skip. See you soon! - {ME}"],
+ ["Booking", "Asking for entry details", "Hi [Client], how would you like us to get in on [day]? If you'll be out, please share the door or lockbox code here and we'll keep it private. Any alarm we should know about?"],
+ ["Reminders", "Reminder the day before", "Hi [Client], reminder from {BIZ}: we'll be there tomorrow, [day], around [time]. Reply here if anything has changed. Thank you!"],
+ ["Reminders", "On my way", "Hi [Client], it's {ME} from {BIZ}. We're on our way and should arrive around [time]."],
+ ["Reminders", "Running late", "Hi [Client], I'm so sorry, we're running about [X] minutes behind today. We'll still give your home our full attention. Thank you for your patience! - {ME}"],
+ ["Reminders", "Need to reschedule (your side)", "Hi [Client], I'm sorry to ask, but we need to move your [day] cleaning. Could [option 1] or [option 2] work instead? Thank you for understanding. - {ME}, {BIZ}"],
+ ["After visit", "All done", "All done, [Client]! Your home is ready. If anything isn't quite right, reply here within 24 hours and we'll make it right. - {ME}"],
+ ["After visit", "Asking for a review", "Thank you for choosing {BIZ}, [Client]! If you were happy with your clean, a short review would mean a lot to a small business like ours: [review link]. Thank you!"],
+ ["After visit", "Asking for a referral", "Hi [Client]! We have room for one or two more homes in your area. If a friend or neighbor is looking for a cleaner, we'd be grateful for the introduction. Thank you for being such a great client!"],
+ ["Rebooking", "Turning a one-time clean into recurring", "Hi [Client], I hope you're enjoying the clean home! Many clients keep it this way with a visit every [two weeks]. Recurring visits are $[amount] each. Want me to save a regular spot for you?"],
+ ["Rebooking", "Checking in after a while", "Hi [Client], it's {ME} from {BIZ}. It's been a little while since your last clean. Would you like to get on the schedule? I have openings on [day] and [day]."],
+ ["Rebooking", "Holiday or move-out offer", "Hi [Client], with [the holidays/your move] coming up, would you like a deep clean beforehand? I have a few spots left on [dates]."],
+ ["Problems", "Responding to a complaint", "Hi [Client], thank you for letting me know, and I'm sorry it wasn't right. I'd like to fix it. Could we come back on [day] to take care of [issue] at no charge? - {ME}"],
+ ["Problems", "Something got damaged", "Hi [Client], I need to let you know that [item] was accidentally damaged during today's clean. I'm very sorry. Here's what we'll do to make it right: [repair/replace/insurance]. Please call me at [number] so we can sort it out."],
+ ["Problems", "Client cancels last minute", "Hi [Client], no problem, I hope everything's okay. As a reminder, cancellations within [24/48] hours have a $[fee] fee per our policy. Would you like to reschedule for [option]?"],
+ ["Business", "Price increase notice", "Hi [Client], thank you for being a loyal {BIZ} client. Because of rising supply and fuel costs, our price will change from $[old] to $[new] starting [date]. We truly appreciate you, and we'll keep giving your home the same care. - {ME}"],
+ ["Business", "Payment reminder", "Hi [Client], friendly reminder that the $[amount] for your [date] clean is still open. You can pay by [method]. Thank you!"],
+ ["Business", "Holiday schedule", "Hi [Client], {BIZ} will be closed [dates] for the holidays. Your next clean will be on [date]. Happy holidays!"],
+ ["Business", "Thank-you for a long-time client", "Hi [Client], it's been [X months/a year] since your first clean with {BIZ}. Thank you for trusting us with your home. It means a lot! - {ME}"]
+];
+const cats = ["All", ...new Set(M.map(m => m[0]))];
+let cat = "All";
+const chips = document.getElementById("chips");
+cats.forEach(c => { const b = document.createElement("button"); b.className = "chip" + (c === cat ? " on" : ""); b.textContent = c;
+  b.onclick = () => { cat = c; [...chips.children].forEach(x => x.classList.toggle("on", x.textContent === c)); render(); }; chips.appendChild(b); });
+const val = (id, d) => document.getElementById(id).value.trim() || d;
+function fill(t) { return t.replaceAll("{BIZ}", val("biz", "[Business]")).replaceAll("{ME}", val("me", "[Your name]")); }
+function render() {
+  const q = document.getElementById("q").value.toLowerCase(), list = document.getElementById("list");
+  list.innerHTML = "";
+  M.filter(m => (cat === "All" || m[0] === cat) && (m[1] + " " + m[2]).toLowerCase().includes(q)).forEach(m => {
+    const d = document.createElement("div"); d.className = "msg";
+    const text = fill(m[2]);
+    d.innerHTML = `<h3></h3><p></p>`;
+    d.querySelector("h3").textContent = m[1];
+    d.querySelector("h3").insertAdjacentHTML("beforeend", `<span class="tag">${m[0]}</span>`);
+    d.querySelector("p").textContent = text;
+    const b = document.createElement("button"); b.className = "cp"; b.textContent = "Copy";
+    b.onclick = () => navigator.clipboard.writeText(text).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); });
+    d.appendChild(b); list.appendChild(d);
+  });
+  if (!list.children.length) list.innerHTML = "<p>No messages match that search.</p>";
+}
+["biz", "me", "q"].forEach(id => document.getElementById(id).addEventListener("input", render));
+render();
+</script>
