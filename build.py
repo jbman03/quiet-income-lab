@@ -83,8 +83,35 @@ def parse(p):
     return title, desc, rest
 
 
+TOOLS = ROOT / "tools"
+BASE_URL = "https://jbman03.github.io/quiet-income-lab/"
+
+
+def build_tools():
+    """tools/<slug>.html = an HTML fragment whose first two lines are '<!-- title: ... -->' and '<!-- desc: ... -->'."""
+    cards = []
+    for p in sorted(TOOLS.glob("*.html")) if TOOLS.exists() else []:
+        src = p.read_text(encoding="utf-8")
+        title = re.search(r"<!-- title: (.*?) -->", src).group(1)
+        desc = re.search(r"<!-- desc: (.*?) -->", src).group(1)
+        (OUT / p.name).write_text(page(title, f"<h1>{html.escape(title)}</h1><p class='desc'>{html.escape(desc)}</p>{src}", desc),
+                                  encoding="utf-8")
+        cards.append(f"<div class='card'><h2><a href='{p.name}'>{html.escape(title)}</a></h2><div>{html.escape(desc)}</div></div>")
+    return cards
+
+
+def sitemap():
+    urls = [BASE_URL] + [BASE_URL + p.name for p in sorted(OUT.glob("*.html")) if p.name != "index.html"]
+    (OUT / "sitemap.xml").write_text(
+        "<?xml version='1.0' encoding='UTF-8'?>\n<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>\n"
+        + "".join(f"  <url><loc>{u}</loc><lastmod>{date.today()}</lastmod></url>\n" for u in urls) + "</urlset>\n",
+        encoding="utf-8")
+    (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}sitemap.xml\n", encoding="utf-8")
+
+
 def build():
     OUT.mkdir(exist_ok=True)
+    tool_cards = build_tools()
     cards = []
     for p in sorted(ART.glob("*.md"), key=lambda x: x.stat().st_mtime, reverse=True):
         title, desc, rest = parse(p)
@@ -92,10 +119,16 @@ def build():
         (OUT / f"{slug}.html").write_text(page(title, f"<h1>{inline(title)}</h1><p class='desc'>{inline(desc)}</p>{md(rest)}", desc),
                                           encoding="utf-8")
         cards.append(f"<div class='card'><h2><a href='{slug}.html'>{inline(title)}</a></h2><div>{inline(desc)}</div></div>")
-    (OUT / "index.html").write_text(page(SITE, "<h1>How-to guides</h1>" + "".join(cards), TAGLINE),
+    keep = {f"{p.stem}.html" for p in ART.glob("*.md")} | {p.name for p in TOOLS.glob("*.html")} | {"index.html"}
+    for stale in OUT.glob("*.html"):                # removed articles disappear from the site too
+        if stale.name not in keep:
+            stale.unlink()
+    tools_html = ("<h1>Free tools</h1>" + "".join(tool_cards)) if tool_cards else ""
+    (OUT / "index.html").write_text(page(SITE, tools_html + "<h1>How-to guides</h1>" + "".join(cards), TAGLINE),
                                     encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
-    return len(cards)
+    sitemap()
+    return len(cards) + len(tool_cards)
 
 
 def publish(msg=None):

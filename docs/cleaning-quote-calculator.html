@@ -1,0 +1,104 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Free House Cleaning Quote Calculator</title><meta name='description' content='Estimate labor hours, time on site and a price for any house cleaning job, with a copy-ready quote message.'><style>
+:root{--ink:#1d1d1f;--mute:#5f6368;--line:#e3e3e3;--bg:#fff;--card:#f6f8f7;--accent:#2f6f4f}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e8e8;--mute:#a0a0a0;--line:#333;--bg:#121212;--card:#1c1f1d;--accent:#7cc79f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main,header,footer{max-width:720px;margin:0 auto;padding:0 16px}header{padding-top:28px}
+header a{color:var(--ink);text-decoration:none;font-weight:700}header p{color:var(--mute);margin:2px 0 0}
+h1{font-size:2rem;line-height:1.2;margin:28px 0 8px}h2{font-size:1.3rem;margin:28px 0 6px}
+a{color:var(--accent)}.desc{color:var(--mute);font-size:1.05rem}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+.card h2{margin:0 0 4px;font-size:1.15rem}.card a{text-decoration:none}.cta{background:var(--card);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:28px 0}
+blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--line);color:var(--mute)}code{background:var(--card);padding:1px 4px;border-radius:4px}
+footer{color:var(--mute);font-size:.9rem;padding:32px 16px 40px;border-top:1px solid var(--line);margin-top:40px}
+</style></head><body><header><a href='./'>Quiet Income Lab</a><p>Practical how-tos for small cleaning businesses and do-it-yourself AI.</p></header><main><h1>Free House Cleaning Quote Calculator</h1><p class='desc'>Estimate labor hours, time on site and a price for any house cleaning job, with a copy-ready quote message.</p><!-- title: Free House Cleaning Quote Calculator -->
+<!-- desc: Estimate labor hours, time on site and a price for any house cleaning job, with a copy-ready quote message. -->
+<style>
+.calc label{display:block;margin:10px 0 4px;font-weight:600}.calc input,.calc select{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.checks label{font-weight:400;display:flex;gap:8px;align-items:center;margin:6px 0}.checks input{width:auto}
+.out{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:18px 0}.big{font-size:1.8rem;font-weight:700;color:var(--accent)}
+.out table{width:100%;border-collapse:collapse}.out td{padding:4px 0;border-bottom:1px solid var(--line)}.out td:last-child{text-align:right}
+textarea{width:100%;min-height:110px;font:inherit;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.btn{font:inherit;padding:8px 14px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer;margin-top:6px}
+details{margin:12px 0}@media (max-width:520px){.row{grid-template-columns:1fr}}
+</style>
+<div class="calc">
+<div class="row">
+  <div><label for="bed">Bedrooms</label><input id="bed" type="number" min="0" value="3"></div>
+  <div><label for="bath">Bathrooms</label><input id="bath" type="number" min="0" step="0.5" value="2"></div>
+</div>
+<div class="row">
+  <div><label for="type">Type of clean</label><select id="type"><option value="1">Standard / recurring</option><option value="1.5">Deep clean</option><option value="1.8">Move-in / move-out</option></select></div>
+  <div><label for="cond">Condition</label><select id="cond"><option value="0.85">Light (cleaned recently)</option><option value="1" selected>Normal</option><option value="1.3">Heavy (pets, clutter, long gap)</option></select></div>
+</div>
+<div class="row">
+  <div><label for="crew">Cleaners on the job</label><input id="crew" type="number" min="1" value="2"></div>
+  <div><label for="rate">Your rate per labor hour ($)</label><input id="rate" type="number" min="0" value="45"></div>
+</div>
+<label>Extras</label>
+<div class="checks">
+  <label><input type="checkbox" data-h="0.5"> Inside oven (+0.5 h)</label>
+  <label><input type="checkbox" data-h="0.5"> Inside fridge (+0.5 h)</label>
+  <label><input type="checkbox" data-h="1"> Interior windows (+1 h)</label>
+  <label><input type="checkbox" data-h="1"> Inside cabinets (+1 h)</label>
+  <label><input type="checkbox" data-h="0.5"> Laundry / bed linens (+0.5 h)</label>
+</div>
+<div class="row">
+  <div><label for="travel">Travel fee ($)</label><input id="travel" type="number" min="0" value="0"></div>
+  <div><label for="sup">Supplies ($)</label><input id="sup" type="number" min="0" value="10"></div>
+</div>
+<details><summary>Adjust the base times (match them to your own past jobs)</summary>
+<div class="row">
+  <div><label for="b0">Base (kitchen, living areas), labor hours</label><input id="b0" type="number" step="0.25" value="1.5"></div>
+  <div><label for="b1">Per bedroom, labor hours</label><input id="b1" type="number" step="0.25" value="0.5"></div>
+</div>
+<div class="row">
+  <div><label for="b2">Per bathroom, labor hours</label><input id="b2" type="number" step="0.25" value="0.75"></div>
+  <div><label for="min">Minimum job price ($)</label><input id="min" type="number" value="120"></div>
+</div>
+</details>
+</div>
+
+<div class="out">
+  <div>Estimated price</div><div class="big" id="price">$0</div>
+  <table>
+    <tr><td>Labor hours</td><td id="lh"></td></tr>
+    <tr><td>Time on site with your crew</td><td id="site"></td></tr>
+    <tr><td>Labor</td><td id="labor"></td></tr>
+    <tr><td>Extras included above</td><td id="extras"></td></tr>
+    <tr><td>Supplies + travel</td><td id="st"></td></tr>
+  </table>
+</div>
+
+<label for="msg"><strong>Copy-ready quote message</strong></label>
+<textarea id="msg"></textarea>
+<button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('msg').value).then(()=>this.textContent='Copied')">Copy message</button>
+
+<p class="desc" style="margin-top:18px">The base times are rule-of-thumb starting points, not industry standards. Time a few of your own jobs and adjust them under "Adjust the base times" for accurate quotes.</p>
+
+<div class="cta">Want the printable intake form and quote worksheet that go with this? They're in the <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a>. New to posting about your business? Grab <a href="https://jbman03gmail.gumroad.com/l/free-cleaning-posts">5 free Facebook posts</a>.</div>
+
+<script>
+const $ = id => document.getElementById(id), n = id => parseFloat($(id).value) || 0, money = v => "$" + Math.round(v).toLocaleString();
+function calc() {
+  const typeSel = $("type"), extrasH = [...document.querySelectorAll(".checks input:checked")].reduce((s, c) => s + parseFloat(c.dataset.h), 0);
+  const core = (n("b0") + n("bed") * n("b1") + n("bath") * n("b2")) * parseFloat(typeSel.value) * parseFloat($("cond").value);
+  const lh = Math.round((core + extrasH) * 4) / 4, crew = Math.max(1, n("crew"));
+  const labor = lh * n("rate"), other = n("sup") + n("travel");
+  const total = Math.max(n("min"), Math.round((labor + other) / 5) * 5);
+  const extrasNames = [...document.querySelectorAll(".checks input:checked")].map(c => c.parentElement.textContent.replace(/\s*\(.*\)/, "").trim().toLowerCase());
+  $("price").textContent = money(total);
+  $("lh").textContent = lh.toFixed(2).replace(/\.00$/, "") + " h";
+  const site = lh / crew;
+  $("site").textContent = `about ${Math.floor(site)} h ${Math.round((site % 1) * 60)} min (${crew} cleaner${crew > 1 ? "s" : ""})`;
+  $("labor").textContent = money(labor);
+  $("extras").textContent = extrasNames.length ? extrasNames.join(", ") : "none";
+  $("st").textContent = money(other);
+  const kind = { "1": "standard clean", "1.5": "deep clean", "1.8": "move-in/move-out clean" }[typeSel.value];
+  $("msg").value = `Thanks for the details! For a ${kind} of your ${n("bed")}-bedroom, ${n("bath")}-bathroom home` +
+    (extrasNames.length ? `, including ${extrasNames.join(", ")}` : "") +
+    `, the price is ${money(total)}. That includes all supplies. Our team of ${crew} will need about ${Math.ceil(site * 2) / 2} hours on site. ` +
+    `Want me to get you on the schedule? Just send a day and time that works.`;
+}
+document.querySelectorAll(".calc input,.calc select").forEach(el => el.addEventListener("input", calc));
+calc();
+</script>
+</main><footer>Products and setup help: <a href='https://jbman03gmail.gumroad.com'>jbman03gmail.gumroad.com</a></footer></body></html>

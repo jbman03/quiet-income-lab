@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jbman03.github.io/quiet-income-lab/sitemap.xml

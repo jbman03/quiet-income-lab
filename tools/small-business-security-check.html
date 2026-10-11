@@ -1,0 +1,50 @@
+<!-- title: 2-Minute Security Check for Small Businesses -->
+<!-- desc: Answer 12 yes/no questions and get your risk level plus the exact fixes that matter most. Nothing you type leaves your browser. -->
+<style>
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}.q p{margin:0 0 8px;font-weight:600}
+.q label{margin-right:18px;cursor:pointer}.res{border-radius:10px;padding:16px;margin:20px 0;border:1px solid var(--line)}
+.lvl{font-size:1.5rem;font-weight:700}.btn{font:inherit;padding:10px 16px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}
+</style>
+<div id="qs"></div>
+<button class="btn" onclick="score()">See my result</button>
+<div id="res"></div>
+<p class="desc">This check runs entirely in your browser. Your answers aren't sent or saved anywhere.</p>
+<div class="cta">Want a person to go through it with you? I do free 20-minute security checkups by phone for small cleaning businesses (advice only, I never need your passwords). Background reading: <a href="scams-hitting-small-cleaning-businesses.html">3 scams hitting small cleaning businesses</a>.</div>
+<script>
+const Q = [
+  ["Is two-step login (2FA) turned on for your main business email?", 3, "Turn on 2-step verification for your business email first. It's the master key to everything else (Gmail: Google Account, Security, 2-Step Verification)."],
+  ["Have you checked your email for forwarding rules you didn't create?", 2, "Check email forwarding settings for rules you didn't set up. Attackers use them to quietly read password resets."],
+  ["Is 2FA on for the Facebook account that owns your business page?", 3, "Turn on 2FA for the Facebook account that owns your page, so a stolen password isn't enough to take the page."],
+  ["Does your Facebook page have a second trusted admin?", 2, "Add a second trusted admin to your page so it can be recovered if your account is locked or hacked."],
+  ["Is 2FA on for your payment account (Square, Stripe, PayPal) and booking software?", 3, "Turn on 2FA for your payment and booking accounts. That's where the money is."],
+  ["Do you get alerts for new logins, payouts and bank-detail changes?", 2, "Turn on login and payout alerts so you hear about changes within minutes, not at the end of the month."],
+  ["Do you confirm any 'new bank details' request by calling a number you already have?", 3, "Never pay to new bank details without calling a number you already trust. This one rule stops most invoice fraud."],
+  ["Do you use a different password for each business account?", 2, "Stop reusing passwords. A free password manager (Bitwarden, or the one built into Google/Apple) makes it painless."],
+  ["Is your phone protected by a screen lock with automatic updates on?", 1, "Turn on a screen lock and automatic updates on the phone you run the business from."],
+  ["Are client door, lockbox and alarm codes kept out of plain notes and group chats?", 2, "Move client door and alarm codes out of plain notes and group chats into a locked password manager entry."],
+  ["Do former employees no longer have access to your booking app, email or shared drive?", 2, "Remove former employees' access to your booking app, shared email and Google Drive today."],
+  ["Do you have a backup of your client list outside your booking software?", 1, "Export your client list once a month so a locked or cancelled account can't wipe out your business."]
+];
+const qs = document.getElementById("qs");
+Q.forEach((q, i) => qs.insertAdjacentHTML("beforeend",
+  `<div class="q"><p>${i + 1}. ${q[0]}</p><label><input type="radio" name="q${i}" value="1"> Yes</label>` +
+  `<label><input type="radio" name="q${i}" value="0"> No / not sure</label></div>`));
+function score() {
+  let risk = 0, max = 0, fixes = [], unanswered = 0;
+  Q.forEach((q, i) => {
+    max += q[1];
+    const a = document.querySelector(`input[name=q${i}]:checked`);
+    if (!a) unanswered++;
+    if (!a || a.value === "0") { risk += q[1]; fixes.push(q); }
+  });
+  fixes.sort((a, b) => b[1] - a[1]);
+  const pct = risk / max;
+  const [lvl, col] = pct <= 0.15 ? ["Strong", "var(--accent)"] : pct <= 0.45 ? ["Some gaps", "#b7791f"] : ["At risk", "#b42318"];
+  document.getElementById("res").innerHTML = `<div class="res"><div class="lvl" style="color:${col}">${lvl}</div>` +
+    `<p>${fixes.length} of ${Q.length} protections missing or unsure${unanswered ? ` (${unanswered} unanswered counted as "no")` : ""}.</p>` +
+    (fixes.length ? `<p><strong>Fix these first:</strong></p><ol>${fixes.slice(0, 3).map(f => `<li>${f[2]}</li>`).join("")}</ol>` +
+      (fixes.length > 3 ? `<details><summary>The rest (${fixes.length - 3})</summary><ol>${fixes.slice(3).map(f => `<li>${f[2]}</li>`).join("")}</ol></details>` : "")
+      : "<p>Nice work. You've covered the basics that stop most attacks on small businesses.</p>") + "</div>";
+  document.getElementById("res").scrollIntoView({ behavior: "smooth" });
+}
+</script>
