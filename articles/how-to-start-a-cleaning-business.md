@@ -48,4 +48,4 @@ Keeping a client is far cheaper than finding a new one. Industry surveys rank cu
 
 Answering messages eats more time than most new owners expect. Save quick replies for the questions you get every week: pricing, availability, what's included, and how to prepare for a visit.
 
-<div class="cta">The <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> has the intake form, quote worksheet, scope checklist and 10 ready-to-send client messages, so your first clients get a professional experience from day one. Prefer to start free? Get <a href="https://jbman03gmail.gumroad.com/l/free-cleaning-posts">5 free Facebook posts for your cleaning business</a>.</div>
+<div class="cta">The <a href="https://sparklekitco.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> has the intake form, quote worksheet, scope checklist and 10 ready-to-send client messages, so your first clients get a professional experience from day one. Prefer to start free? Get <a href="https://sparklekitco.gumroad.com/l/free-cleaning-posts">5 free Facebook posts for your cleaning business</a>.</div>

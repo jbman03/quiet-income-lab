@@ -34,4 +34,4 @@ Your business email is the master key. Whoever controls it can reset your bookin
 - **Client door and alarm codes:** don't keep them in plain notes on a shared phone or in group chats.
 - **Former employees:** remove their access to your booking app, shared email and Google Drive the day they leave.
 
-<div class="cta">I'm doing free 20-minute security checkups by phone for a small number of cleaning business owners. It's advice only, and I never need your passwords. Find me on Facebook in the Minnesota Cleaning Companies group, or see my tools for cleaning businesses at <a href="https://jbman03gmail.gumroad.com">jbman03gmail.gumroad.com</a>.</div>
+<div class="cta">I'm doing free 20-minute security checkups by phone for a small number of cleaning business owners. It's advice only, and I never need your passwords. Find me on Facebook in the Minnesota Cleaning Companies group, or see my tools for cleaning businesses at <a href="https://sparklekitco.gumroad.com">sparklekitco.gumroad.com</a>.</div>

@@ -47,4 +47,4 @@ Costs go up every year, and your prices should too. The way you announce it matt
 
 The [price increase letter generator](cleaning-client-retention-toolkit.html) writes the message for you with your numbers and date filled in.
 
-<div class="cta">The <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> includes a scope checklist, visit record, and feedback and rebooking form: the tools that make every clean consistent so clients stay.</div>
+<div class="cta">The <a href="https://sparklekitco.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> includes a scope checklist, visit record, and feedback and rebooking form: the tools that make every clean consistent so clients stay.</div>
