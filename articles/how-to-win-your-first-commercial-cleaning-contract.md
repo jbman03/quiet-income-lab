@@ -55,4 +55,4 @@ One or two pages is enough:
 
 Commercial clients rarely leave because of price. They leave when things get missed. Use the same checklist every visit, reply to complaints the same day, and check in with the office manager once a month. Happy accounts become referrals to the business next door.
 
-<div class="cta">The <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> includes a walkthrough worksheet, scope checklist, quote template and client messages you can adapt for commercial accounts. Run your numbers first with the free <a href="commercial-cleaning-bid-calculator.html">bid calculator</a>.</div>
+<div class="cta">The <a href="https://sparklekitco.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> includes a walkthrough worksheet, scope checklist, quote template and client messages you can adapt for commercial accounts. Run your numbers first with the free <a href="commercial-cleaning-bid-calculator.html">bid calculator</a>.</div>

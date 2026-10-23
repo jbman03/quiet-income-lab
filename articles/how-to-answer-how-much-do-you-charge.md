@@ -33,4 +33,4 @@ Separate line items make the price easier for the client to accept, because they
 
 If they go quiet for a day, send one short follow-up: "Hi! Just checking you got the quote. Happy to adjust anything or answer questions." One follow-up books a surprising number of jobs. More than that starts to feel pushy.
 
-<div class="cta">Want the full intake form and a quote worksheet that does the labor-hour math for you? The <a href="https://jbman03gmail.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> has both. Or start with <a href="https://jbman03gmail.gumroad.com/l/free-cleaning-posts">5 free Facebook posts for your cleaning business</a>.</div>
+<div class="cta">Want the full intake form and a quote worksheet that does the labor-hour math for you? The <a href="https://sparklekitco.gumroad.com/l/cleaning-client-starter-kit">Cleaning Client Starter Kit</a> has both. Or start with <a href="https://sparklekitco.gumroad.com/l/free-cleaning-posts">5 free Facebook posts for your cleaning business</a>.</div>

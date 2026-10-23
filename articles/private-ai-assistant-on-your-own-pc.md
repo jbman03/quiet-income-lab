@@ -33,4 +33,4 @@ The software is free. The only cost is electricity while the PC is on. On a PC w
 - Don't put passwords, card numbers or ID scans into any AI workspace.
 - To reach it from your phone away from home, use Tailscale (free) instead of opening ports on your router.
 
-<div class="cta">The full step-by-step guide, including the ready-to-run morning brief script, is here: <a href="https://jbman03gmail.gumroad.com/l/ziccnx">Your Own Private AI Assistant, Weekend Setup Guide</a>. Prefer to have it done for you? <a href="https://jbman03gmail.gumroad.com/l/jxapmn">Book a 90-minute setup session</a>.</div>
+<div class="cta">The full step-by-step guide, including the ready-to-run morning brief script, is here: <a href="https://sparklekitco.gumroad.com/l/ziccnx">Your Own Private AI Assistant, Weekend Setup Guide</a>. Prefer to have it done for you? <a href="https://sparklekitco.gumroad.com/l/jxapmn">Book a 90-minute setup session</a>.</div>
